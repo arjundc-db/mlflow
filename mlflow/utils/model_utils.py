@@ -46,6 +46,7 @@ def _get_flavor_configuration_from_uri(model_uri, flavor_name):
     :return: The flavor configuration as a dictionary.
     """
     try:
+        print (model_uri)
         ml_model_file = _download_artifact_from_uri(
             artifact_uri=append_to_uri_path(model_uri, "MLmodel"))
     except Exception as ex:

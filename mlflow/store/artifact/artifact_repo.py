@@ -88,6 +88,10 @@ class ArtifactRepository:
             if not os.path.exists(local_dir_path):
                 os.makedirs(local_dir_path)
             self._download_file(remote_file_path=fullpath, local_path=local_file_path)
+            print (f"fullpath : {fullpath}")
+            print (f"dirpath : {dirpath}")
+            print (f"local_dir_path : {local_dir_path}")
+            print (f"local_file_path : {local_file_path}")
             return local_file_path
 
         def download_artifact_dir(dir_path):
@@ -110,6 +114,8 @@ class ArtifactRepository:
             dst_path = tempfile.mkdtemp()
         dst_path = os.path.abspath(dst_path)
 
+        print (f"dst_path : {dst_path}")
+
         if not os.path.exists(dst_path):
             raise MlflowException(
                 message=(
@@ -125,8 +131,10 @@ class ArtifactRepository:
 
         # Check if the artifacts points to a directory
         if self._is_directory(artifact_path):
+            print("MUTIPLE DOWNLOAD")
             return download_artifact_dir(artifact_path)
         else:
+            print("SINGLE DOWNLOAD")
             return download_file(artifact_path)
 
     @abstractmethod

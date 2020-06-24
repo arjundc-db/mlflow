@@ -69,6 +69,10 @@ def _download_artifact_from_uri(artifact_uri, output_path=None):
         artifact_path = posixpath.basename(parsed_uri.path)
         parsed_uri = parsed_uri._replace(path=posixpath.dirname(parsed_uri.path))
         root_uri = prefix + urllib.parse.urlunparse(parsed_uri)
-
+    print(f"artifact_uri : {artifact_uri}")
+    print(f"parsed_uri : {parsed_uri}")
+    print(f"root_uri : {root_uri}")
+    print(f"artifact_path : {artifact_path}")
+    print(f"output_path : {output_path}")
     return get_artifact_repository(artifact_uri=root_uri).download_artifacts(
         artifact_path=artifact_path, dst_path=output_path)
